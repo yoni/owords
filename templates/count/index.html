@@ -1,0 +1,10 @@
+{% if latest_count_list %}
+<ul>
+  {% for count in latest_count_list %}
+  <li><a href="/count/{{ count.id }}/">{{ count.question }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No counts are available.</p>
+{% endif %}
+
