@@ -1,10 +1,10 @@
 <h1>Worksheet:</h1>
 <h2>Columns</h2>
-<ol>
+<ul>
   {% for column in columns %}
-  <li>{{column}}</li>
+  <li><a href="/spreadsheet/{{spreadsheet_id}}/worksheet/{{worksheet_id}}/column/{{column}}">{{column}}</a></li>
   {% endfor %}
-</ol>
+</ul>
 <h2>Rows</h2>
 <ol>
   {% for row in rows %}

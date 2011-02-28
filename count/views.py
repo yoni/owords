@@ -52,7 +52,10 @@ def worksheet(request, spreadsheet_id, worksheet_id):
   columns = rows[0].keys()
   return render_to_response('count/worksheet.html', {
     'columns' : columns,
-    'rows'    : rows})
+    'rows'    : rows,
+    'spreadsheet_id':spreadsheet_id,
+    'worksheet_id':worksheet_id
+  })
 
 def count(request, spreadsheet_id, worksheet_id, column):
   """Runs word count analysis on the given column."""
@@ -63,7 +66,9 @@ def count(request, spreadsheet_id, worksheet_id, column):
   a = Analyzer(rows)
   word_freqs = a.word_freq(column)
   return render_to_response('count/count.html', {
-    'word_frequencies': word_freqs.items()
+    'spreadsheet_id': spreadsheet_id,
+    'word_frequencies': word_freqs.items(),
+    'worksheet_id':worksheet_id
   })
 
 def user(request):

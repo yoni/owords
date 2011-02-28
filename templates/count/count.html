@@ -1,1 +1,9 @@
-<p>{{word_frequencies}}</p>
+<h1>Top words</h1>
+<table>
+  {% for word_frequency in word_frequencies %}
+  <tr>
+    <td>{{word_frequency.0}}</td>
+    <td>{{word_frequency.1}}</td>
+  </tr>
+  {% endfor %}
+</table>
