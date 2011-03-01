@@ -1,5 +1,10 @@
 <h1>Top words</h1>
 <table>
+  <thead>
+    <tr>
+      <td>Word</td><td>Count</td>
+    </tr>
+  </thead>
   {% for word_frequency in word_frequencies %}
   <tr>
     <td>{{word_frequency.0}}</td>

@@ -52,7 +52,6 @@ def worksheet(request, spreadsheet_id, worksheet_id):
   columns = rows[0].keys()
   return render_to_response('count/worksheet.html', {
     'columns' : columns,
-    'rows'    : rows,
     'spreadsheet_id':spreadsheet_id,
     'worksheet_id':worksheet_id
   })
