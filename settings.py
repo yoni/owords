@@ -82,6 +82,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/Users/yoni/opower/workspace/owords/templates',
+    '/Users/yoni/opower/workspace/owords/spreadsheets/templates',
 )
 
 
