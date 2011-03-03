@@ -25,23 +25,6 @@ class Spreadsheets:
     self.curr_wksht_id = ''
     self.list_feed = None
     
-  def _PrintFeed(self, feed):
-    """
-    Prints out the feed, with separate handling for SpreadsheetsListFeed
-    and other feeds.
-    """
-    for i, entry in enumerate(feed.entry):
-      if isinstance(feed, gdata.spreadsheet.SpreadsheetsListFeed):
-        print '%s %s %s' % (i, entry.title.text, entry.content.text)
-        # Print this row's value for each column (the custom dictionary is
-        # built using the gsx: elements in the entry.)
-        print 'Contents:'
-        for key in entry.custom:  
-          print '  %s: %s' % (key, entry.custom[key].text) 
-        print '\n',
-      else:
-        print '%s %s\n' % (i, entry.title.text)
-        
   def get_rows(self):
     """Get all of the rows in the worksheet."""
     feed = self.get_worksheet_feed()
