@@ -1,5 +1,3 @@
-__author__ = 'yoni.bmesh@gmail.com (Yoni Ben-Meshulam)'
-
 from xml.etree import ElementTree
 import gdata.spreadsheet.service
 import gdata.service
@@ -28,6 +26,10 @@ class Spreadsheets:
     self.list_feed = None
     
   def _PrintFeed(self, feed):
+    """
+    Prints out the feed, with separate handling for SpreadsheetsListFeed
+    and other feeds.
+    """
     for i, entry in enumerate(feed.entry):
       if isinstance(feed, gdata.spreadsheet.SpreadsheetsListFeed):
         print '%s %s %s' % (i, entry.title.text, entry.content.text)
@@ -41,6 +43,7 @@ class Spreadsheets:
         print '%s %s\n' % (i, entry.title.text)
         
   def get_rows(self):
+    """Get all of the rows in the worksheet."""
     feed = self.get_worksheet_feed()
     rows = []
     for i, entry in enumerate(feed.entry):
@@ -55,29 +58,30 @@ class Spreadsheets:
     return rows
 
   def get_worksheet_feed(self):
-    """The current worksheet's content"""
+    """The current worksheet's feed"""
     return self.gd_client.GetListFeed(self.curr_key, self.curr_wksht_id)
 
   def spreadsheets(self):
     """Get the list of spreadsheets"""
-    # Get the list of spreadsheets
     feed = self.gd_client.GetSpreadsheetsFeed()
-    self._PrintFeed(feed)
     return feed
 
-  def set_spreadsheet(self, input):
-    """Select the spreadsheet to use"""
+  def set_spreadsheet(self, index):
+    """Select the spreadsheet to use, by index."""
     feed = self.gd_client.GetSpreadsheetsFeed()
-    id_parts = feed.entry[int(input)].id.text.split('/')
+    id_parts = feed.entry[int(index)].id.text.split('/')
     self.curr_key = id_parts[len(id_parts) - 1]
   
   def worksheets(self):
-    """Get the list of worksheets"""
+    """Get the list of worksheets in the current spreadsheet."""
     feed = self.gd_client.GetWorksheetsFeed(self.curr_key)
-    self._PrintFeed(feed)
+    return feed
     
   def set_worksheet(self, input):
-    """Select the worksheet to use"""
+    """
+    Select the worksheet to use.
+    To retrieve a list of worksheets, see worksheets.
+    """
     feed = self.gd_client.GetWorksheetsFeed(self.curr_key)
     id_parts = feed.entry[int(input)].id.text.split('/')
     self.curr_wksht_id = id_parts[len(id_parts) - 1]

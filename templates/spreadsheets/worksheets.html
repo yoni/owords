@@ -1,0 +1,6 @@
+<h1>Available Worksheets:</h1>
+<ol>
+  {% for worksheet in worksheets %}
+  <li><a href="{% url worksheet spreadsheet_id worksheet.id %}">{{ worksheet.title }}</a></li>
+  {% endfor %}
+<ol>
