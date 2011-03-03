@@ -1,0 +1,14 @@
+OWords
+------
+
+A Google Spreadsheets linguistic analysis tool.
+
+Utilizes the Django application framework, basic username/password Google Authentication,
+and Natural Language Toolkit (NLTK) to retrieve a user's Spreadsheets and allow the user to drill
+down to through spreadhseets->worksheets->columns and do word analysis on individual columns.
+
+Dependencies
+------------
+See http://www.djangoproject.com/
+See http://www.nltk.org/
+See http://code.google.com/apis/spreadsheets/data/1.0/developers_guide_python.html
